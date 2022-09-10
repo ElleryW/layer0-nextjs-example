@@ -39,6 +39,13 @@ router.get('/commerce/:name', ({ renderWithApp }) => {
   renderWithApp()
 })
 
+// Don't cache the echo route
+router.match('/api/echo', ({ cache }) => {
+  cache ({
+    edge: false
+  })
+})
+
 // Only compiled with 0 build / 0 deploy
 if (isProductionBuild()) {
   // The data in Next.js comes through _next/data/project-build-id route.
